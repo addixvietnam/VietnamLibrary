@@ -51,14 +51,17 @@ public class Log {
             strText = "Start time:";
             lengthDate = (int)Math.floor(this.widthSize/2);
             // myFormat: Caculate of content.lenght, not over size
-            myFormat = "%s" +  strText + "%"+ lengthDate +"s%" + (this.widthSize - strText.length() - lengthDate - 1) + "s";
+            myFormat = "%s" +  strText + "%"+ lengthDate +"s%" + 
+                    (this.widthSize - strText.length() - lengthDate - 1) + "s";
             //outDate: print date with format from getDateTime
-            outDate = String.format(myFormat, strCharHeader, Utilities.getDateTime(), strCharHeader);
+            outDate = String.format(myFormat, strCharHeader, 
+                    Utilities.getDateTime(MyVars.LIB_DATETIME_FORMAT, MyVars.LIB_TIMEZONE), strCharHeader);
         }else{//Footer
             strText = "End time:";
             lengthDate = (int)(Math.floor(this.widthSize/2)+2);
             myFormat = "%s" + strText + "%" + lengthDate + "s%" + (this.widthSize - strText.length() - lengthDate - 1) + "s";
-            outDate = String.format(myFormat, strCharHeader, Utilities.getDateTime(), strCharHeader);
+            outDate = String.format(myFormat, strCharHeader, 
+                    Utilities.getDateTime(MyVars.LIB_DATETIME_FORMAT, MyVars.LIB_TIMEZONE), strCharHeader);
         }
         myStr =  strStar + "\n";
         myStr = myStr + outDate + "\n";
@@ -75,7 +78,18 @@ public class Log {
     public String formatStringContent(String content){
         int strLength = content.length();
         String myStr = "";
+        
+        String[] arrContent = content.split("\n");
+        for(int i = 0; i < arrContent.length; i++){
+            myStr += myFormatContent(arrContent[i]) + "\n";
+        }
+        
+        return myStr + "\n";
+    }
+    private String myFormatContent(String content){
+        int strLength = content.length();
         boolean isFirst = true;
+        String myStr = "";
         if(strLength > this.widthSize){//lenght content over size default
             String strTemp = "";
             int postStart = 0, postEnd = this.widthSize - 1 , iter = 0;
@@ -104,9 +118,9 @@ public class Log {
                 }                
             }
         }else{//lenght content smaller size default
-            return content + "\n";
+            myStr += content;
         }
-        return myStr + "\n";
+        return myStr;
     }
  /**
   * writeError: Get content error
@@ -120,13 +134,30 @@ public class Log {
         String myErrorLine = "";
         String strSpace = " ";
         String mySpace = "";
+        String headerError = "";
+
+        myErrorLine = String.join("", Collections.nCopies(this.widthSize, strLineError));
+        myStr = myErrorLine + "\n";
+        headerError = nameError;
+        String[] arrHeaderError = headerError.split("\n");
+        for(int i = 0; i < arrHeaderError.length; i++){            
+            myStr += formatErrorLogString("", arrHeaderError[i]);
+        }        
+        myStr += "\nDate: " + Utilities.getDateTime(MyVars.LIB_DATETIME_FORMAT, MyVars.LIB_TIMEZONE) ;
+        mySpace = String.join("", Collections.nCopies(this.numErrorSpace, strSpace));
+        //format error log
+        String[] arrErrorContent = errorContent.split("\n");
+        for(int i = 0; i < arrErrorContent.length; i++){
+            myStr += formatErrorLogString(mySpace, arrErrorContent[i]);
+        }        
+        myStr +=  "\n" + myErrorLine + "\n";
+        return myStr;       
+    }   
+    private String formatErrorLogString(String mySpace, String errorContent){
+        String strResult = "";
         int strLength = 0;
         //The same content beside, but change length of Date,text Error
         strLength = errorContent.length();
-        myErrorLine = String.join("", Collections.nCopies(this.widthSize, strLineError));
-        myStr = myErrorLine + "\n";
-        myStr += "Error " + nameError + "\nDate: " + Utilities.getDateTime() ;
-        mySpace = String.join("", Collections.nCopies(this.numErrorSpace, strSpace));
         if((strLength + this.numErrorSpace) > this.widthSize){
             String strTemp = "";
             int postStart = 0, postEnd = this.widthSize - 1 - this.numErrorSpace , iter = 0;
@@ -135,27 +166,29 @@ public class Log {
                strTemp = errorContent.substring(postStart, postEnd);
                iter = postEnd + 1;
                myChar = errorContent.charAt(iter);
-               while(myChar != ' '){
+               while((myChar != ' ') && (iter > postStart)){
                    iter --;
                    myChar = errorContent.charAt(iter);
                }               
-               postEnd = iter;
-               strTemp = mySpace + errorContent.substring(postStart, postEnd);
-
-               myStr = myStr + "\n" + strTemp;
-
-               postStart = postEnd + 1;
-               postEnd += this.widthSize - 1 - this.numErrorSpace;
-               if(postEnd > strLength){
-                   myStr = myStr + "\n" + mySpace + errorContent.substring(postStart, strLength);
-               }
+               if(iter <= postStart){
+                   strResult = strResult + "\n" + mySpace + errorContent.substring(postStart, strLength);
+                   postEnd = strLength + 1;
+               }else{
+                   postEnd = iter;
+                    strTemp = mySpace + errorContent.substring(postStart, postEnd);
+                    strResult = strResult + "\n" + strTemp;
+                    postStart = postEnd + 1;
+                    postEnd += this.widthSize - 1 - this.numErrorSpace;
+                    if(postEnd > strLength){
+                        strResult = strResult + "\n" + mySpace + errorContent.substring(postStart, strLength);
+                    }
+               }               
             }
         }else{
-            myStr += "\n" + mySpace + errorContent + "\n";
+            strResult += "\n" + mySpace + errorContent + "\n";
         }
-        myStr +=  "\n" + myErrorLine + "\n";
-        return myStr;       
-    }   
+        return strResult;
+    }
     /**
      * writeLog() write content to log file
      * @param fileName full name (name + path) of log file

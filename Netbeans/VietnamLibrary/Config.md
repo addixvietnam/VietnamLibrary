@@ -1,4 +1,4 @@
-Work directory = D:\MyProjects\Sources\Netbeans\VietnamLibrary
+Work directory = D:\MyProjects\Sources\ADDIX-Library\VietnamLibrary\Netbeans\VietnamLibrary
 Debug mode = 0
 Multi machine = 0
 Multi thread = 0

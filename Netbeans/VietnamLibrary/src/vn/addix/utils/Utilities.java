@@ -2,12 +2,16 @@ package vn.addix.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
 
 public class Utilities {
+       
     /**
-     * isNumber() checking string is number or string
+     * checking string is number or string
      * @param strNumber
      * @return 
      */
@@ -19,15 +23,18 @@ public class Utilities {
             return false;  
         }
     }    
+   
     /**
-     * getDateTime(): return datetime with format yyyy/MM/dd HH:mm:ss GMT
+     * return datetime with format yyyy/MM/dd HH:mm:ss GMT
+     * @param formatDateTime example is "yyyy/MM/dd HH:mm:ss z"
+     * @param strTimeZone example is "GMT"
      * @return 
-     */
-    public static String getDateTime()
+     */     
+    public static String getDateTime(String formatDateTime, String strTimeZone)
     {
         Date date = new Date();
         DateFormat gmtFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss z");
-        TimeZone gmtTime = TimeZone.getTimeZone("GMT");
+        TimeZone gmtTime = TimeZone.getTimeZone(strTimeZone);
         gmtFormat.setTimeZone(gmtTime);
         return gmtFormat.format(date);
     }
@@ -46,5 +53,27 @@ public class Utilities {
                 }
             }
         }
-    }    
+    }   
+    /**
+     * Get total time to waiting finish the program
+     * @param beginTime
+     * @param endTime
+     * @param formatTime example is "yyyy/MM/dd HH:mm:ss z"
+     * @return 
+     */
+    public static String getTotalWaitTime(String beginTime, String endTime, String formatTime){
+        String strTotalWaitTime = "";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatTime);
+        LocalDateTime dateTimeBegin = LocalDateTime.parse(beginTime, formatter);
+        LocalDateTime dateTimeEnd = LocalDateTime.parse(endTime, formatter);
+        long tmpTimeBegin = Duration.between(dateTimeBegin, LocalDateTime.now()).getSeconds();
+        long tmpTimeEnd = Duration.between(dateTimeEnd, LocalDateTime.now()).getSeconds();
+        long tmpTimeTotal = tmpTimeBegin - tmpTimeEnd;
+        int hour = (int) (tmpTimeTotal / 3600);
+        int minutes = (int) ((tmpTimeTotal%3600) / 60);
+        int seconds = (int) (tmpTimeTotal%60);
+        strTotalWaitTime = Integer.toString(hour) + " hours " + Integer.toString(minutes) + 
+                " minutes " + Integer.toString(seconds) + " seconds ";
+        return strTotalWaitTime;
+    }
 }

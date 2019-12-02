@@ -11,25 +11,28 @@ import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.apache.commons.io.FileUtils;
 
 public abstract class AddixFile {
+    
     /**
      * Copy file from source file to dest folder. 
      * @param srcFile
      * @param destFolder
      * @param newNameFile If don't rename file, set by ""
+     * @return
      * @throws UnsupportedEncodingException
      * @throws FileNotFoundException
      * @throws IOException 
-     */    
-    public void coppyExcelFile(String srcFile, String destFolder, String newNameFile) 
+     */
+    public String coppyExcelFile(String srcFile, String destFolder, String newNameFile) 
             throws UnsupportedEncodingException, FileNotFoundException, IOException{
+        String strOutFile = "";
         try{
             // Convert path to UTF-8
             srcFile = URLDecoder.decode(srcFile, "UTF-8");
             destFolder = URLDecoder.decode(destFolder, "UTF-8");         
             //Get path dest to copy
-            String strOutFile = "";
             if(newNameFile.equals("")){
                 String[] path = srcFile.split("[\\/]");
                 strOutFile = destFolder + "/" + path[path.length -1];
@@ -46,11 +49,11 @@ public abstract class AddixFile {
             }        
             // Close after completed change file.
             fileInputStream.close();
-            fileOutputStream.close();
-          
+            fileOutputStream.close();            
         }catch(Exception ex){
             throw ex;               
-        }        
+        }  
+        return strOutFile;
     }
     /**
      * delete file if it exist
@@ -64,5 +67,21 @@ public abstract class AddixFile {
             return true;
         }
         return false;
+    }
+    /**
+     * Create new folder.
+     * @param folderName
+     * @return true if create successful
+     */
+    public boolean createFolder(String folderName){
+        return new File(folderName).mkdir();
+    }
+    /**
+     * Delete folder include file and folder
+     * @param folderName
+     * @throws IOException 
+     */
+    public void deleteFolder(File folderName) throws IOException{
+        FileUtils.deleteDirectory(folderName);
     }
 }

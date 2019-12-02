@@ -12,6 +12,9 @@ public class MyVars {
     public static String LOG_CHARACTER_ERROR = "=";
     public static int LOG_NUMBER_LIMIT_FILE = 10;
     public static int LOG_NUMBER_SPACE_ERROR = 3; 
+    //Format date time
+    public static String LIB_TIMEZONE = "GMT";
+    public static String LIB_DATETIME_FORMAT = "yyyy/MM/dd HH:mm:ss z";
 
     public static void setGlobalVariables(String[] array){
         WORK_DIRECTORY = array[0];

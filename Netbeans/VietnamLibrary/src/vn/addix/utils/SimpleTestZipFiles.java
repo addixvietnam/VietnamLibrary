@@ -15,7 +15,6 @@ public class SimpleTestZipFiles {
         //ZipFiles myZip = new ZipFiles();
         ZipFiles.zipSingleFile(file, zipFileName);
         
-        ZipFiles.zipDirectory(dir, zipDirName);
-        
+        ZipFiles.zipDirectory(dir, zipDirName);                
     }
 }

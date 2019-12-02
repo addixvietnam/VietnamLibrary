@@ -1,0 +1,37 @@
+************************************************************************************************************************
+*Start time:                                     2019/11/29 08:18:44 GMT                                               *
+************************************************************************************************************************
+
+Để đơn giản hóa thủ tục hành chính, giảm bớt những yêu cầu về giấy tờ cho người dân, 
+Bộ Công an đang đẩy nhanh việc áp dụng công nghệ trong hoạt động đăng ký, cấp biển số phương tiện. Cụ thể, với xe làm
+thủ tục sang tên, chủ mới của xe chỉ cần đến cơ quan đăng ký nơi mình cư trú để làm thủ tục, không phải rút hồ sơ gốc.
+Cơ quan tiếp nhận hồ sơ xe đối chiếu và in giấy chứng nhận đăng ký xe. Khi đăng ký lại, kể cả xe đã chuyển quyền sở hữu
+nhiều lần, chủ mới của xe không cần đưa xe đến kiểm tra, chỉ cần ghi mã số định danh cá nhân, số hóa đơn điện tử, tên
+doanh nghiệp bán xe vào giấy khai sang tên. Cán bộ sẽ kiểm tra thông tin trên cơ sở dữ liệu quốc gia về dân cư, trên
+Cổng thông tin điện tử của Tổng cục thuế và hoàn thiện hồ sơ.
+
+
+========================================================================================================================
+
+Exceptions In Java
+
+Date: 2019/11/29 08:18:44 GMT
+   An Error “indicates serious problems that a reasonable application should not try to catch.”Both Errors and
+   Exceptions are the subclasses of java.lang.Throwable class. Errors are the conditions which cannot get recovered by
+   any handling techniques. It surely cause termination of the program abnormally. Errors belong to unchecked type and
+   mostly occur at runtime. Some of the examples of errors are Out of memory error or a System crash error.
+========================================================================================================================
+
+========================================================================================================================
+
+Error Write Output To Excel File
+D:\RPA\ANA\ANA_2020\ANA-VIETNAM\Netbeans\ANA-ADDIX/output/data_page_source/HTML/wirelesswire/20191128_wirelesswire.xlsx
+Date: 2019/11/29 08:18:44 GMT
+    java.lang.StringIndexOutOfBoundsException: String index out of range: 147
+
+========================================================================================================================
+
+************************************************************************************************************************
+*End time:                                       2019/11/29 08:18:44 GMT                                               *
+************************************************************************************************************************
+

@@ -10,7 +10,7 @@ public class SimpleTestLogFile{
     }
       
     public static void main(String[] args){
-        MyVars.WORK_DIRECTORY = "D:\\MyProjects\\Sources\\Netbeans\\VietnamLibrary";
+        MyVars.WORK_DIRECTORY = "D:\\MyProjects\\Sources\\ADDIX-Library\\VietnamLibrary\\Netbeans\\VietnamLibrary";
         SimpleTestLogFile myTestLogFile = new SimpleTestLogFile();
         //Init program
         myTestLogFile.initAddixVietnamLibrary();
@@ -21,7 +21,7 @@ public class SimpleTestLogFile{
     }
     
     public void testLog(){
-        String myStr = "Để đơn giản hóa thủ tục hành chính, giảm bớt những yêu cầu về giấy tờ cho người dân, " + 
+        String myStr = "Để đơn\n giản hóa thủ tục hành chính, giảm bớt những yêu cầu về giấy tờ cho người dân, \n" + 
                 "Bộ Công an đang đẩy nhanh việc áp dụng công nghệ trong hoạt động đăng ký, cấp biển số phương tiện. " + 
                 "Cụ thể, với xe làm thủ tục sang tên, chủ mới của xe chỉ cần đến cơ quan đăng ký nơi mình cư trú để làm thủ tục, " + 
                 "không phải rút hồ sơ gốc. Cơ quan tiếp nhận hồ sơ xe đối chiếu và in giấy chứng nhận đăng ký xe. Khi đăng ký lại, " + 
@@ -43,7 +43,10 @@ public class SimpleTestLogFile{
 //        System.out.println(myLog.formatStringContent(myStr));
         //Write error to log file
         myLog.writeLog(logFile, myLog.formatStringError("Exceptions In Java", myErr));
-//        System.out.println(myLog.formatStringError("Exceptions In Java", logFile));
+        
+        myLog.writeLog(logFile, myLog.formatStringError("Error Write Output To Excel File D:\\RPA\\ANA\\ANA_2020\\ANA-VIETNAM\\Netbeans\\ANA-ADDIX/output/data_page_source/HTML/wirelesswire/20191128_wirelesswire.xlsx",  
+                " java.lang.StringIndexOutOfBoundsException: String index out of range: 147"));
+//        System.out.println(myLog.formatStringError("Exceptions In Java", myErr));
         //Write to footer log file
         myLog.writeLog(logFile, myLog.formatStringHeaderAndFooter(false));        
 //        System.out.println(myLog.formatStringHeaderAndFooter(false));

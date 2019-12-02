@@ -1,5 +1,5 @@
 ************************************************************************************************************************
-*Start time:                                     2019/11/14 04:36:58 GMT                                               *
+*Start time:                                     2019/11/29 07:03:47 GMT                                               *
 ************************************************************************************************************************
 
 Để đơn giản hóa thủ tục hành chính, giảm bớt những yêu cầu về giấy tờ cho người dân, Bộ Công an đang đẩy nhanh việc áp
@@ -12,11 +12,21 @@ Tổng cục thuế và hoàn thiện hồ sơ.
 
 ========================================================================================================================
 Error Exceptions In Java
-Date: 2019/11/14 04:36:58 GMT   D:\MyProjects\Sources\Netbeans\VietnamLibrary\logs\log.info
+Date: 2019/11/29 07:03:47 GMT
+   An Error “indicates serious problems that a reasonable application should not try to catch.”Both Errors and
+   Exceptions are the subclasses of java.lang.Throwable class. Errors are the conditions which cannot get recovered by
+   any handling techniques. It surely cause termination of the program abnormally. Errors belong to unchecked type and
+   mostly occur at runtime. Some of the examples of errors are Out of memory error or a System crash error.
+========================================================================================================================
+
+========================================================================================================================
+Error Error Write Output To Excel File D:\RPA\ANA\ANA_2020\ANA-VIETNAM\Netbeans\ANA-ADDIX/output/data_page_source/HTML/wirelesswire/20191128_wirelesswire.xlsx
+Date: 2019/11/29 07:03:47 GMT
+    java.lang.StringIndexOutOfBoundsException: String index out of range: 147
 
 ========================================================================================================================
 
 ************************************************************************************************************************
-*End time:                                       2019/11/14 04:36:58 GMT                                               *
+*End time:                                       2019/11/29 07:03:47 GMT                                               *
 ************************************************************************************************************************
 
