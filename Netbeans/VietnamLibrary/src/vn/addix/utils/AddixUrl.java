@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AddixUrl {
+public abstract class AddixUrl {
     /**
      * Save url of web page to local url
      * @param filename what name of file we will save
